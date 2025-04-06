@@ -33,6 +33,7 @@ export class EmployeeListComponent implements OnInit {
   private gql = inject(GraphQLService);
   private router = inject(Router);
   employees: any[] = [];
+  searchTerm: string = '';
 
   displayedColumns: string[] = [
     'first_name',
@@ -87,4 +88,15 @@ export class EmployeeListComponent implements OnInit {
     localStorage.removeItem('token');
     this.router.navigate(['/login']);
   }
+
+  get filteredEmployees(): any[] {
+    if (!this.searchTerm) return this.employees;
+  
+    const lowerSearch = this.searchTerm.toLowerCase();
+  
+    return this.employees.filter(emp =>
+      emp.first_name.toLowerCase().includes(lowerSearch) ||
+      emp.last_name.toLowerCase().includes(lowerSearch)
+    );
+  }  
 }

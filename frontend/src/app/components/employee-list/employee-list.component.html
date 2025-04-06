@@ -3,9 +3,14 @@
     <mat-toolbar color="primary">
       <span>Employee List</span>
     </mat-toolbar>
-
-    <div *ngIf="employees.length > 0">
-      <table mat-table [dataSource]="employees" class="mat-elevation-z8">
+    <input
+      type="text"
+      placeholder="Search by name"
+      [(ngModel)]="searchTerm"
+      class="search-bar"
+    />
+    <div *ngIf="filteredEmployees.length > 0">
+      <table mat-table [dataSource]="filteredEmployees" class="mat-elevation-z8">
         <!-- First Name Column -->
         <ng-container matColumnDef="first_name">
           <th mat-header-cell *matHeaderCellDef> First Name </th>
@@ -55,7 +60,7 @@
       </div>
     </div>
 
-    <div *ngIf="employees.length === 0">
+    <div *ngIf="filteredEmployees.length === 0">
       <p>No employees found.</p>
     </div>
 
@@ -64,3 +69,4 @@
     </div>
   </mat-card>
 </div>
+

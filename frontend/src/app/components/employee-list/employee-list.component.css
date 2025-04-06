@@ -1,0 +1,10 @@
+/* employee-list.component.css */
+.search-bar {
+    margin-bottom: 1rem;
+    padding: 0.5rem;
+    width: 100%;
+    max-width: 300px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  

@@ -1,1 +1,24 @@
 /* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.mission-card, .details-card {
+    margin: 16px;
+    padding: 16px;
+  }
+  
+  mat-card {
+    width: 90%;
+    max-width: 600px;
+    margin: auto;
+    display: block;
+  }
+  
+  mat-form-field {
+    width: 100%;
+    max-width: 300px;
+    margin: 16px auto;
+    display: block;
+  }
+  
