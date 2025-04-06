@@ -16,6 +16,14 @@ const GET_EMPLOYEES = `
   }
 `;
 
+const DELETE_EMPLOYEE = `
+  mutation DeleteEmployee($id: ID!) {
+    deleteEmployee(id: $id) {
+      id
+    }
+  }
+`;
+
 @Component({
   selector: 'app-employee-list',
   standalone: false,
@@ -23,19 +31,46 @@ const GET_EMPLOYEES = `
   styleUrls: ['./employee-list.component.css'],
 })
 export class EmployeeListComponent implements OnInit {
-  private gql = inject(GraphQLService); // GraphQLService injected
+  private gql = inject(GraphQLService);
   private router = inject(Router);
-  employees: any[] = []; // Array to store employee data
-
-  constructor() {}
+  employees: any[] = [];
 
   ngOnInit(): void {
-    // Make the GraphQL request and handle the response
-    this.gql.query(GET_EMPLOYEES).then((data: any) => {
-      this.employees = data.getAllEmployees;
-    }).catch(error => {
-      console.error('Error fetching employees:', error);
-    });
+    this.loadEmployees();
+  }
+
+  loadEmployees() {
+    this.gql.query(GET_EMPLOYEES)
+      .then((data: any) => {
+        this.employees = data.getAllEmployees;
+      })
+      .catch(error => {
+        console.error('Error fetching employees:', error);
+      });
+  }
+
+  viewEmployee(id: string) {
+    this.router.navigate(['/employee-details', id]);
+  }
+
+  editEmployee(id: string) {
+    this.router.navigate(['/update-employee', id]);
+  }
+
+  deleteEmployee(id: string) {
+    if (confirm('Are you sure you want to delete this employee?')) {
+      this.gql.mutate(DELETE_EMPLOYEE, { id })
+        .then(() => {
+          this.loadEmployees(); // Refresh list after deletion
+        })
+        .catch(error => {
+          console.error('Error deleting employee:', error);
+        });
+    }
+  }
+
+  addEmployee() {
+    this.router.navigate(['/add-employee']);
   }
 
   logout() {

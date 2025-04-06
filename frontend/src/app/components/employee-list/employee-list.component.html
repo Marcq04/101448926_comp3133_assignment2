@@ -2,13 +2,25 @@
     <h3>Employee List</h3>
     <ul>
       <li *ngFor="let employee of employees">
-        {{ employee.first_name }} {{ employee.last_name }} - {{ employee.designation }}
+        {{ employee.first_name }} {{ employee.last_name }} - {{ employee.department }} {{ employee.designation }}
+  
+        <!-- View Details -->
+        <button (click)="viewEmployee(employee.id)">View</button>
+  
+        <!-- Edit -->
+        <button (click)="editEmployee(employee.id)">Edit</button>
+  
+        <!-- Delete -->
+        <button (click)="deleteEmployee(employee.id)">Delete</button>
       </li>
     </ul>
+  
+    <!-- Add Employee Button -->
+    <button (click)="addEmployee()">Add Employee</button>
+    <br /><br />
     <button (click)="logout()">Logout</button>
   </div>
   
   <div *ngIf="employees.length === 0">
     <p>No employees found.</p>
   </div>
-  
