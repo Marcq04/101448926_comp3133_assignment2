@@ -1,26 +1,52 @@
-<div class="form-container">
-    <h2>Add New Employee</h2>
-    <form (ngSubmit)="addEmployee()">
-      <label>First Name:</label>
-      <input type="text" [(ngModel)]="first_name" name="first_name" required />
-  
-      <label>Last Name:</label>
-      <input type="text" [(ngModel)]="last_name" name="last_name" required />
-  
-      <label>Email:</label>
-      <input type="email" [(ngModel)]="email" name="email" required />
-  
-      <label>Designation:</label>
-      <input type="text" [(ngModel)]="designation" name="designation" required />
-  
-      <label>Department:</label>
-      <input type="text" [(ngModel)]="department" name="department" required />
-  
-      <label>Salary:</label>
-      <input type="number" [(ngModel)]="salary" name="salary" required />
-  
-      <button type="submit">Add Employee</button>
-    </form>
+<div class="container">
+  <mat-toolbar color="primary">
+    <span>Add New Employee</span>
+  </mat-toolbar>
 
-    <button (click)="goBack()">Go Back</button>
-  </div>
+  <mat-card class="form-container">
+    <form (ngSubmit)="addEmployee()">
+      <mat-form-field class="full-width">
+        <mat-label>First Name</mat-label>
+        <input matInput type="text" [(ngModel)]="first_name" name="first_name" required />
+        <mat-error *ngIf="!first_name">First name is required</mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="full-width">
+        <mat-label>Last Name</mat-label>
+        <input matInput type="text" [(ngModel)]="last_name" name="last_name" required />
+        <mat-error *ngIf="!last_name">Last name is required</mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="full-width">
+        <mat-label>Email</mat-label>
+        <input matInput type="email" [(ngModel)]="email" name="email" required />
+        <mat-error *ngIf="!email">A valid email is required</mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="full-width">
+        <mat-label>Designation</mat-label>
+        <input matInput type="text" [(ngModel)]="designation" name="designation" required />
+        <mat-error *ngIf="!designation">Designation is required</mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="full-width">
+        <mat-label>Department</mat-label>
+        <input matInput type="text" [(ngModel)]="department" name="department" required />
+        <mat-error *ngIf="!department">Department is required</mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="full-width">
+        <mat-label>Salary</mat-label>
+        <input matInput type="number" [(ngModel)]="salary" name="salary" required />
+        <mat-error *ngIf="!salary">Salary is required</mat-error>
+      </mat-form-field>
+
+      <div class="form-actions">
+        <button mat-raised-button color="primary" type="submit" [disabled]="!first_name || !last_name || !email || !designation || !department || !salary">
+          Add Employee
+        </button>
+        <button mat-button (click)="goBack()">Go Back</button>
+      </div>
+    </form>
+  </mat-card>
+</div>

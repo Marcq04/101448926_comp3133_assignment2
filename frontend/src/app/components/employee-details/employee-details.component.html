@@ -3,16 +3,18 @@
 
 <div *ngIf="!loading && employeeDetails" class="employee-details">
   <h2>Employee Details</h2>
-  <ul>
-    <li><strong>First Name:</strong> {{ employeeDetails.first_name }}</li>
-    <li><strong>Last Name:</strong> {{ employeeDetails.last_name }}</li>
-    <li><strong>Email:</strong> {{ employeeDetails.email }}</li>
-    <li><strong>Designation:</strong> {{ employeeDetails.designation }}</li>
-    <li><strong>Department:</strong> {{ employeeDetails.department }}</li>
-    <li><strong>Salary:</strong> {{ employeeDetails.salary | currency }}</li>
-    <li><strong>Created At:</strong> {{ employeeDetails.created_at | date }}</li>
-    <li><strong>Updated At:</strong> {{ employeeDetails.updated_at | date }}</li>
-  </ul>
+  <div class="employee-info">
+    <ul>
+      <li><strong>First Name:</strong> {{ employeeDetails.first_name }}</li>
+      <li><strong>Last Name:</strong> {{ employeeDetails.last_name }}</li>
+      <li><strong>Email:</strong> {{ employeeDetails.email }}</li>
+      <li><strong>Designation:</strong> {{ employeeDetails.designation }}</li>
+      <li><strong>Department:</strong> {{ employeeDetails.department }}</li>
+      <li><strong>Salary:</strong> {{ employeeDetails.salary | currency }}</li>
+      <li><strong>Created At:</strong> {{ employeeDetails.created_at | date }}</li>
+      <li><strong>Updated At:</strong> {{ employeeDetails.updated_at | date }}</li>
+    </ul>
+  </div>
 
-  <button (click)="goBack()">Go Back</button>
+  <button (click)="goBack()" class="go-back-button">Go Back</button>
 </div>

@@ -18,11 +18,10 @@ const GET_EMPLOYEES = `
 
 const DELETE_EMPLOYEE = `
   mutation DeleteEmployee($id: ID!) {
-    deleteEmployee(id: $id) {
-      id
-    }
+    deleteEmployee(id: $id)
   }
 `;
+
 
 @Component({
   selector: 'app-employee-list',
@@ -34,6 +33,16 @@ export class EmployeeListComponent implements OnInit {
   private gql = inject(GraphQLService);
   private router = inject(Router);
   employees: any[] = [];
+
+  displayedColumns: string[] = [
+    'first_name',
+    'last_name',
+    'designation',
+    'department',
+    'actions',
+  ];
+
+  constructor() {}
 
   ngOnInit(): void {
     this.loadEmployees();
@@ -59,15 +68,16 @@ export class EmployeeListComponent implements OnInit {
 
   deleteEmployee(id: string) {
     if (confirm('Are you sure you want to delete this employee?')) {
-      this.gql.mutate(DELETE_EMPLOYEE, { id })
-        .then(() => {
+      this.gql.mutate(DELETE_EMPLOYEE, { id: String(id) })
+        .then((res) => {
+          console.log('Delete success:', res);
           this.loadEmployees(); // Refresh list after deletion
         })
         .catch(error => {
           console.error('Error deleting employee:', error);
         });
     }
-  }
+  }  
 
   addEmployee() {
     this.router.navigate(['/add-employee']);
