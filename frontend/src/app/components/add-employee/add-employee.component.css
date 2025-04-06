@@ -1,23 +1,54 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px 20px;
+  min-height: 100vh;
+  background: linear-gradient(to right, #e0f7fa, #ffffff); /* soft cyan gradient */
+}
+
+mat-toolbar {
+  width: 100%;
+  margin-bottom: 20px;
+  border-radius: 8px;
+  background-color: #1976d2; /* Material Primary */
+  color: white;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
 .form-container {
-    margin-top: 20px;
-    padding: 20px;
-    max-width: 600px;
-    margin-left: auto;
-    margin-right: auto;
-  }
-  
+  background-color: #ffffff;
+  padding: 32px 24px;
+  border-radius: 16px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 700px;
+}
+
+.full-width {
+  width: 100%;
+  margin-bottom: 16px;
+}
+
+.form-actions {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 24px;
+}
+
+button[mat-raised-button] {
+  font-weight: bold;
+  padding: 10px 20px;
+}
+
+button[mat-button] {
+  font-weight: bold;
+  color: #1976d2;
+}
+
+@media (max-width: 600px) {
   .form-actions {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 20px;
+    flex-direction: column;
+    gap: 10px;
   }
-  
-  .mat-form-field {
-    width: 100%;
-    margin-bottom: 15px;
-  }
-  
-  button {
-    margin-top: 20px;
-  }
-  
+}
