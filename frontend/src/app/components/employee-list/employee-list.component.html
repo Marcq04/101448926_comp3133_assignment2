@@ -1,0 +1,14 @@
+<div *ngIf="employees.length > 0">
+    <h3>Employee List</h3>
+    <ul>
+      <li *ngFor="let employee of employees">
+        {{ employee.first_name }} {{ employee.last_name }} - {{ employee.designation }}
+      </li>
+    </ul>
+    <button (click)="logout()">Logout</button>
+  </div>
+  
+  <div *ngIf="employees.length === 0">
+    <p>No employees found.</p>
+  </div>
+  
